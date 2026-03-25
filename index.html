@@ -731,7 +731,7 @@
         <li>Win/loss alerts</li>
         <li>Cancel anytime</li>
       </ul>
-      <a href="https://discord.gg/DhPgzsFuWX" class="btn-outline btn-full" target="_blank">Get Basic — Pay in Crypto</a>
+      <button class="btn-outline btn-full" onclick="openPayModal('basic')">Get Basic — $30/mo</button>
     </div>
 
     <!-- Pro -->
@@ -748,7 +748,7 @@
         <li>Monthly performance report</li>
         <li>Early access to new features</li>
       </ul>
-      <a href="https://discord.gg/DhPgzsFuWX" class="btn-primary btn-full" target="_blank">Get Pro — Pay in Crypto</a>
+      <button class="btn-primary btn-full" onclick="openPayModal('pro')">Get Pro — $50/mo</button>
     </div>
   </div>
 
@@ -780,7 +780,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q">What is the minimum to start? <span class="faq-icon">+</span></button>
-        <div class="faq-a">The bot trades $5 per position. To copy all signals across 6 coins and 3 timeframes, we recommend starting with $100–200 USDC on Polymarket. You don't need to copy every signal.</div>
+        <div class="faq-a">The bot trades $3–5 per position. To copy signals comfortably we recommend starting with $100–200 USDC on Polymarket. You don't need to copy every signal — pick the coins you're most confident in.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q">How is the 65% win rate calculated? <span class="faq-icon">+</span></button>
@@ -788,9 +788,104 @@
       </div>
       <div class="faq-item">
         <button class="faq-q">Can I cancel anytime? <span class="faq-icon">+</span></button>
-        <div class="faq-a">Yes. No contracts, no lock-ins. Cancel your subscription anytime from the Stripe portal and you'll retain access until the end of your billing period.</div>
+        <div class="faq-a">Yes. No contracts, no lock-ins. Subscriptions are monthly. Simply don't renew and your access ends at the end of the paid period. Payment is in USDC on Polygon — no credit cards needed.</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- PAYMENT MODAL -->
+<div id="pay-modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);align-items:center;justify-content:center">
+  <div style="background:#0d0d10;border:1px solid #1e1e2e;border-radius:16px;padding:2.5rem;max-width:480px;width:90%;position:relative">
+    <button onclick="closePayModal()" style="position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:#64748b;font-size:1.4rem;cursor:pointer">×</button>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#00ff88;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem">Payment Instructions</div>
+    <h3 id="modal-title" style="font-size:1.4rem;margin-bottom:.4rem">PolyOmega Basic — $30/mo</h3>
+    <p style="color:#64748b;font-size:.9rem;margin-bottom:1.5rem">Send exactly <strong id="modal-amount" style="color:#e2e8f0">30 USDC</strong> on <strong style="color:#e2e8f0">Polygon network</strong> to this address:</p>
+
+    <div style="background:#060608;border:1px solid #1e1e2e;border-radius:8px;padding:1rem;margin-bottom:1rem">
+      <div style="font-size:.65rem;color:#64748b;margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.08em">Wallet Address (USDC on Polygon)</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#00ff88;word-break:break-all">0x332276cbA5630F7850DC9BDa43034325618CF6E8</div>
+      <button onclick="copyWallet()" style="margin-top:.6rem;background:#1e1e2e;border:none;color:#e2e8f0;padding:.3rem .8rem;border-radius:4px;font-size:.75rem;cursor:pointer" id="copy-btn">Copy address</button>
+    </div>
+
+    <div style="background:#060608;border:1px solid #1e1e2e;border-radius:8px;padding:1rem;margin-bottom:1.5rem">
+      <div style="font-size:.7rem;color:#64748b;line-height:1.8">
+        <div>1. Send <strong id="modal-amount2" style="color:#e2e8f0">30 USDC</strong> on <strong style="color:#e2e8f0">Polygon</strong> to the address above</div>
+        <div>2. Copy your transaction hash from your wallet</div>
+        <div>3. Join Discord and send your TX hash in <strong style="color:#e2e8f0">#payments</strong></div>
+        <div>4. Access granted within 24h</div>
+      </div>
+    </div>
+
+    <label style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:1rem;cursor:pointer">
+      <input type="checkbox" id="terms-check" onchange="togglePayBtn(this.checked)" style="margin-top:3px;accent-color:#00ff88;flex-shrink:0">
+      <span style="font-size:.72rem;color:#64748b;line-height:1.6">I have read and agree to the <a href="#terms" onclick="closePayModal()" style="color:#00ff88">Terms & Conditions</a>. I understand that algorithmic trading signals involve substantial risk of financial loss, past performance does not guarantee future results, and PolyOmega is not a licensed financial advisor.</span>
+    </label>
+    <a id="pay-btn" href="https://discord.gg/DhPgzsFuWX" target="_blank" class="btn-primary btn-full" style="display:block;text-align:center;text-decoration:none;opacity:.4;pointer-events:none;cursor:not-allowed">Join Discord to submit payment</a>
+    <p style="text-align:center;font-size:.7rem;color:#64748b;margin-top:.8rem">Only send USDC on Polygon network. Other networks will be lost.</p>
+  </div>
+</div>
+
+<!-- TERMS & CONDITIONS -->
+<section id="terms" style="padding:6rem 1.5rem;max-width:800px;margin:0 auto">
+  <div class="section-tag" style="text-align:center">Legal</div>
+  <h2 style="text-align:center;margin-bottom:2.5rem">Terms & Conditions</h2>
+  <div style="color:#94a3b8;font-size:.88rem;line-height:1.9;display:flex;flex-direction:column;gap:1.8rem">
+
+    <div>
+      <h3 style="color:#e2e8f0;font-size:1rem;margin-bottom:.6rem">1. Not Financial Advice</h3>
+      <p>PolyOmega and its operators do not provide financial, investment, legal, or tax advice. All signals, data, commentary, and content provided through PolyOmega are for informational and educational purposes only. Nothing on this platform constitutes a recommendation to buy, sell, or hold any asset. You should consult a qualified financial advisor before making any investment decisions. PolyOmega is not a registered investment advisor, broker-dealer, or financial institution of any kind.</p>
+    </div>
+
+    <div>
+      <h3 style="color:#e2e8f0;font-size:1rem;margin-bottom:.6rem">2. High Risk — You May Lose All Your Money</h3>
+      <p>Trading on prediction markets and copying algorithmic signals involves a <strong style="color:#e2e8f0">substantial risk of financial loss</strong>, including the loss of your entire investment. Past performance of the PolyOmega algorithm — including any win rates, PnL figures, or trade history displayed on this website — does <strong style="color:#e2e8f0">not guarantee future results</strong>. Markets are inherently unpredictable. The algorithm may enter losing streaks, stop working entirely, or produce results that differ significantly from historical data. Only trade with capital you can afford to lose completely.</p>
+    </div>
+
+    <div>
+      <h3 style="color:#e2e8f0;font-size:1rem;margin-bottom:.6rem">3. No Guarantee of Accuracy or Availability</h3>
+      <p>Signals are generated by an automated algorithm and may contain errors, delays, or inaccuracies. The bot may experience downtime, connectivity issues, or bugs at any time without notice. PolyOmega does not guarantee that signals will be delivered in time to execute, or that executed trades will result in profit. We reserve the right to suspend, modify, or terminate the service at any time without liability.</p>
+    </div>
+
+    <div>
+      <h3 style="color:#e2e8f0;font-size:1rem;margin-bottom:.6rem">4. You Are Solely Responsible for Your Trades</h3>
+      <p>Any trade you place on Polymarket or any other platform is entirely your own decision and responsibility. PolyOmega does not execute trades on your behalf. By choosing to copy a signal, you accept full responsibility for that trade and its outcome. PolyOmega and its operators shall not be liable for any losses, damages, or costs arising from your use of signals, whether direct, indirect, incidental, or consequential.</p>
+    </div>
+
+    <div>
+      <h3 style="color:#e2e8f0;font-size:1rem;margin-bottom:.6rem">5. Subscription & Payments</h3>
+      <p>Subscriptions are monthly and non-refundable. Payment is made in USDC on the Polygon network directly to our wallet address. Once a payment is sent, it cannot be reversed or refunded — this is a property of blockchain transactions. You are responsible for sending the correct amount to the correct address on the correct network. PolyOmega is not responsible for funds sent to the wrong address or on the wrong network. Access is granted manually within 24 hours of payment confirmation.</p>
+    </div>
+
+    <div>
+      <h3 style="color:#e2e8f0;font-size:1rem;margin-bottom:.6rem">6. Cancellation</h3>
+      <p>You may cancel at any time by simply not renewing your subscription. There are no automatic renewals. Access ends at the end of your paid period. PolyOmega reserves the right to revoke access for violations of these terms, including but not limited to sharing signals outside the subscriber community, chargebacks, or abusive behavior toward staff or other members.</p>
+    </div>
+
+    <div>
+      <h3 style="color:#e2e8f0;font-size:1rem;margin-bottom:.6rem">7. Blockchain & Crypto Risks</h3>
+      <p>Cryptocurrency transactions are irreversible. USDC values may fluctuate. The Polygon network may experience congestion or outages. Using MetaMask or any other wallet involves risks including smart contract vulnerabilities, phishing attacks, and user error. PolyOmega is not responsible for any wallet or crypto-related losses. Always verify wallet addresses from multiple sources before sending funds.</p>
+    </div>
+
+    <div>
+      <h3 style="color:#e2e8f0;font-size:1rem;margin-bottom:.6rem">8. No Liability</h3>
+      <p>To the fullest extent permitted by applicable law, PolyOmega and its operators expressly disclaim all warranties, express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event shall PolyOmega be liable to any party for any direct, indirect, incidental, special, or consequential damages arising out of or related to your use of this service, even if advised of the possibility of such damages. Your sole remedy for dissatisfaction with the service is to discontinue use.</p>
+    </div>
+
+    <div>
+      <h3 style="color:#e2e8f0;font-size:1rem;margin-bottom:.6rem">9. Governing Law</h3>
+      <p>These terms shall be governed by and construed in accordance with applicable international law. Any disputes shall be resolved through binding arbitration rather than in court. By using PolyOmega's services, you agree to these terms in their entirety.</p>
+    </div>
+
+    <div>
+      <h3 style="color:#e2e8f0;font-size:1rem;margin-bottom:.6rem">10. Changes to Terms</h3>
+      <p>PolyOmega reserves the right to update these Terms & Conditions at any time. Continued use of the service after changes constitutes acceptance of the updated terms. Last updated: March 2026.</p>
+    </div>
+
+    <div style="background:#0d0d10;border:1px solid #1e1e2e;border-radius:8px;padding:1.2rem;margin-top:.5rem">
+      <p style="color:#64748b;font-size:.8rem;margin:0"><strong style="color:#e2e8f0">Summary:</strong> PolyOmega provides trading signals for informational purposes only. We are not financial advisors. Trading involves risk and you may lose money. Payments in crypto are non-refundable. Use the service at your own risk. If you do not agree with these terms, do not subscribe.</p>
+    </div>
+
   </div>
 </section>
 
@@ -801,6 +896,7 @@
     <a href="#how">How it works</a>
     <a href="#pricing">Pricing</a>
     <a href="https://discord.gg/DhPgzsFuWX" target="_blank">Discord</a>
+    <a href="#terms">Terms</a>
     <a href="mailto:hello@polyomega.com">Contact</a>
   </div>
   <div class="footer-copy">© 2026 PolyOmega. Not financial advice.</div>
@@ -882,6 +978,47 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!wasOpen) item.classList.add('open');
   });
+});
+
+// ── PAYMENT MODAL ──
+function openPayModal(plan) {
+  const isBasic = plan === 'basic';
+  document.getElementById('modal-title').textContent = isBasic ? 'PolyOmega Basic — $30/mo' : 'PolyOmega Pro — $50/mo';
+  document.getElementById('modal-amount').textContent = isBasic ? '30 USDC' : '50 USDC';
+  document.getElementById('modal-amount2').textContent = isBasic ? '30 USDC' : '50 USDC';
+  const m = document.getElementById('pay-modal');
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  // reset T&C checkbox
+  const cb = document.getElementById('terms-check');
+  cb.checked = false;
+  togglePayBtn(false);
+}
+function closePayModal() {
+  document.getElementById('pay-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+function copyWallet() {
+  navigator.clipboard.writeText('0x332276cbA5630F7850DC9BDa43034325618CF6E8');
+  const btn = document.getElementById('copy-btn');
+  btn.textContent = 'Copied!';
+  btn.style.color = '#00ff88';
+  setTimeout(() => { btn.textContent = 'Copy address'; btn.style.color = ''; }, 2000);
+}
+function togglePayBtn(checked) {
+  const btn = document.getElementById('pay-btn');
+  if (checked) {
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
+    btn.style.cursor = 'pointer';
+  } else {
+    btn.style.opacity = '.4';
+    btn.style.pointerEvents = 'none';
+    btn.style.cursor = 'not-allowed';
+  }
+}
+document.getElementById('pay-modal').addEventListener('click', function(e) {
+  if (e.target === this) closePayModal();
 });
 
 // ── INIT ──
