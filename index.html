@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PolyOmega — Algorithmic Polymarket Trading Signals</title>
-<meta name="description" content="Real-time algorithmic trading signals for Polymarket. 65%+ win rate. Copy every trade the bot makes. $30/month.">
+<meta name="description" content="Algorithmic trading signals for Polymarket. 75%+ win rate across 2,200+ trades. Join Discord for real-time signals. From $15/month.">
 <meta property="og:title" content="PolyOmega — Beat Polymarket with Algorithms">
 <meta property="og:description" content="65%+ win rate. Real-time Discord signals. Copy the bot, earn like the bot.">
 <meta property="og:type" content="website">
@@ -582,7 +582,7 @@
   </p>
 
   <div class="hero-cta">
-    <a href="#pricing" class="btn-primary btn-big">Start Copying — $30/mo</a>
+    <a href="#pricing" class="btn-primary btn-big">Get Signals — from $15/mo</a>
     <a href="#how" class="btn-outline btn-big">See how it works</a>
   </div>
 
@@ -654,32 +654,25 @@
         </div>
       </div>
 
-      <!-- Live signals card — premium lock -->
-      <div class="perf-card" style="display:flex;flex-direction:column;justify-content:space-between">
+      <!-- Recent results card — real trades + live lock -->
+      <div class="perf-card">
         <div class="perf-card-header">
-          <div class="perf-card-title">Live Signals Feed</div>
+          <div class="perf-card-title">Recent Results</div>
           <div style="font-family:var(--mono);font-size:.65rem;color:var(--muted)" id="last-updated">Updated just now</div>
         </div>
-        <div style="position:relative;flex:1">
-          <div style="filter:blur(5px);pointer-events:none;user-select:none;opacity:.55">
-            <table class="trades-table">
-              <thead><tr><th>Time</th><th>Coin</th><th>TF</th><th>Side</th><th>P&amp;L</th></tr></thead>
-              <tbody>
-                <tr><td>14:02:11</td><td style="font-weight:700">BTC</td><td>1h</td><td style="color:var(--green)">UP</td><td style="color:var(--green)">+$3.96</td></tr>
-                <tr><td>13:01:44</td><td style="font-weight:700">ETH</td><td>1h</td><td style="color:var(--red)">DOWN</td><td style="color:var(--green)">+$3.87</td></tr>
-                <tr><td>12:00:09</td><td style="font-weight:700">SOL</td><td>5m</td><td style="color:var(--green)">UP</td><td style="color:var(--green)">+$4.21</td></tr>
-                <tr><td>11:01:33</td><td style="font-weight:700">DOGE</td><td>15m</td><td style="color:var(--red)">DOWN</td><td style="color:var(--red)">-$4.95</td></tr>
-                <tr><td>10:00:52</td><td style="font-weight:700">BNB</td><td>1h</td><td style="color:var(--green)">UP</td><td style="color:var(--green)">+$3.64</td></tr>
-                <tr><td>09:02:18</td><td style="font-weight:700">XRP</td><td>5m</td><td style="color:var(--green)">UP</td><td style="color:var(--green)">+$4.10</td></tr>
-              </tbody>
-            </table>
+        <table class="trades-table">
+          <thead><tr><th>Time</th><th>Coin</th><th>TF</th><th>Side</th><th>Result</th></tr></thead>
+          <tbody id="recent-trades">
+            <tr><td colspan="5" style="text-align:center;color:var(--muted);padding:1.5rem">Loading...</td></tr>
+          </tbody>
+        </table>
+        <!-- live signals lock -->
+        <div style="margin-top:1rem;border:1px solid #1e1e2e;border-radius:8px;padding:1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:#0d0d10">
+          <div>
+            <div style="font-family:var(--mono);font-size:.65rem;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.25rem">&#x1F512; Live Feed — Premium Only</div>
+            <div style="font-size:.78rem;color:var(--muted);line-height:1.5">Get signals <strong style="color:var(--text)">before they settle</strong> — in Discord, the moment the bot enters.</div>
           </div>
-          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:rgba(6,6,8,.6);backdrop-filter:blur(2px);border-radius:8px">
-            <div style="font-size:2rem">&#x1F512;</div>
-            <div style="font-family:var(--mono);font-size:.75rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.1em">Premium Members Only</div>
-            <div style="font-size:.82rem;color:var(--muted);text-align:center;max-width:240px;line-height:1.6">Live signals fire in Discord the moment the bot enters a trade.</div>
-            <a href="#pricing" class="btn-primary" style="font-size:.8rem;padding:.45rem 1.1rem;text-decoration:none">Unlock Signals</a>
-          </div>
+          <a href="#pricing" class="btn-primary" style="white-space:nowrap;font-size:.78rem;padding:.4rem .9rem;text-decoration:none;flex-shrink:0">Unlock</a>
         </div>
       </div>
     </div>
@@ -729,33 +722,33 @@
     <!-- Basic -->
     <div class="price-card">
       <div class="price-name">Basic</div>
-      <div class="price-amount">$30<span>/mo</span></div>
-      <div class="price-desc">Everything you need to copy the bot.</div>
+      <div class="price-amount">$15<span>/mo</span></div>
+      <div class="price-desc">Stats, breakdowns, and trade history.</div>
       <ul class="price-features">
-        <li>Real-time Discord signals</li>
-        <li>All 6 coins (BTC, ETH, SOL, XRP, DOGE, BNB)</li>
-        <li>All timeframes (5m, 15m, 1h)</li>
-        <li>Win/loss alerts</li>
+        <li>Win rate breakdown by coin</li>
+        <li>Win rate breakdown by timeframe</li>
+        <li>Full trade history (last 100 trades)</li>
+        <li>Weekly performance email report</li>
         <li>Cancel anytime</li>
       </ul>
-      <button class="btn-outline btn-full" onclick="openPayModal('basic')">Get Basic — $30/mo</button>
+      <button class="btn-outline btn-full" onclick="openPayModal('basic')">Get Basic — $15/mo</button>
     </div>
 
-    <!-- Pro -->
+    <!-- Premium -->
     <div class="price-card featured">
       <div class="featured-badge">MOST POPULAR</div>
-      <div class="price-name">Pro</div>
-      <div class="price-amount">$50<span>/mo</span></div>
-      <div class="price-desc">For serious traders who want every edge.</div>
+      <div class="price-name">Premium</div>
+      <div class="price-amount">$30<span>/mo</span></div>
+      <div class="price-desc">Live signals the moment the bot enters.</div>
       <ul class="price-features">
         <li>Everything in Basic</li>
-        <li>Live performance dashboard access</li>
-        <li>Priority Discord support</li>
-        <li>Signal confidence score per trade</li>
-        <li>Monthly performance report</li>
-        <li>Early access to new features</li>
+        <li>Live Discord signals (coin, direction, entry price)</li>
+        <li>Real-time win/loss alerts</li>
+        <li>All 7 coins incl. HYPE &amp; DOGE</li>
+        <li>All timeframes (5m, 15m, 1h)</li>
+        <li>Priority support</li>
       </ul>
-      <button class="btn-primary btn-full" onclick="openPayModal('pro')">Get Pro — $50/mo</button>
+      <button class="btn-primary btn-full" onclick="openPayModal('pro')">Get Premium — $30/mo</button>
     </div>
   </div>
 
@@ -806,8 +799,8 @@
   <div style="background:#0d0d10;border:1px solid #1e1e2e;border-radius:16px;padding:2.5rem;max-width:480px;width:90%;position:relative">
     <button onclick="closePayModal()" style="position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:#64748b;font-size:1.4rem;cursor:pointer">×</button>
     <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#00ff88;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem">Payment Instructions</div>
-    <h3 id="modal-title" style="font-size:1.4rem;margin-bottom:.4rem">PolyOmega Basic — $30/mo</h3>
-    <p style="color:#64748b;font-size:.9rem;margin-bottom:1.5rem">Send exactly <strong id="modal-amount" style="color:#e2e8f0">30 USDC</strong> on <strong style="color:#e2e8f0">Polygon network</strong> to this address:</p>
+    <h3 id="modal-title" style="font-size:1.4rem;margin-bottom:.4rem">PolyOmega Basic — $15/mo</h3>
+    <p style="color:#64748b;font-size:.9rem;margin-bottom:1.5rem">Send exactly <strong id="modal-amount" style="color:#e2e8f0">15 USDC</strong> on <strong style="color:#e2e8f0">Polygon network</strong> to this address:</p>
 
     <div style="background:#060608;border:1px solid #1e1e2e;border-radius:8px;padding:1rem;margin-bottom:1rem">
       <div style="font-size:.65rem;color:#64748b;margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.08em">Wallet Address (USDC on Polygon)</div>
@@ -817,7 +810,7 @@
 
     <div style="background:#060608;border:1px solid #1e1e2e;border-radius:8px;padding:1rem;margin-bottom:1.5rem">
       <div style="font-size:.7rem;color:#64748b;line-height:1.8">
-        <div>1. Send <strong id="modal-amount2" style="color:#e2e8f0">30 USDC</strong> on <strong style="color:#e2e8f0">Polygon</strong> to the address above</div>
+        <div>1. Send <strong id="modal-amount2" style="color:#e2e8f0">15 USDC</strong> on <strong style="color:#e2e8f0">Polygon</strong> to the address above</div>
         <div>2. Copy your transaction hash from your wallet</div>
         <div>3. Join Discord and send your TX hash in <strong style="color:#e2e8f0">#payments</strong></div>
         <div>4. Access granted within 24h</div>
@@ -990,9 +983,9 @@ document.querySelectorAll('.faq-q').forEach(btn => {
 // ── PAYMENT MODAL ──
 function openPayModal(plan) {
   const isBasic = plan === 'basic';
-  document.getElementById('modal-title').textContent = isBasic ? 'PolyOmega Basic — $30/mo' : 'PolyOmega Pro — $50/mo';
-  document.getElementById('modal-amount').textContent = isBasic ? '30 USDC' : '50 USDC';
-  document.getElementById('modal-amount2').textContent = isBasic ? '30 USDC' : '50 USDC';
+  document.getElementById('modal-title').textContent = isBasic ? 'PolyOmega Basic — $15/mo' : 'PolyOmega Premium — $30/mo';
+  document.getElementById('modal-amount').textContent = isBasic ? '15 USDC' : '30 USDC';
+  document.getElementById('modal-amount2').textContent = isBasic ? '15 USDC' : '30 USDC';
   const m = document.getElementById('pay-modal');
   m.style.display = 'flex';
   document.body.style.overflow = 'hidden';
