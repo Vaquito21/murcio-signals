@@ -577,8 +577,8 @@
   </h1>
 
   <p class="hero-sub">
-    Real-time algorithmic signals with 65%+ win rate.
-    Copy every trade the bot makes — directly in Discord.
+    Algorithmic signals with 75%+ win rate across 2,200+ trades.
+    See the bot's live performance — get signals in Discord.
   </p>
 
   <div class="hero-cta">
@@ -654,26 +654,33 @@
         </div>
       </div>
 
-      <!-- Recent trades card -->
-      <div class="perf-card">
+      <!-- Live signals card — premium lock -->
+      <div class="perf-card" style="display:flex;flex-direction:column;justify-content:space-between">
         <div class="perf-card-header">
-          <div class="perf-card-title">Recent Trades</div>
+          <div class="perf-card-title">Live Signals Feed</div>
           <div style="font-family:var(--mono);font-size:.65rem;color:var(--muted)" id="last-updated">Updated just now</div>
         </div>
-        <table class="trades-table">
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Coin</th>
-              <th>TF</th>
-              <th>Side</th>
-              <th>P&amp;L</th>
-            </tr>
-          </thead>
-          <tbody id="recent-trades">
-            <tr><td colspan="5" style="text-align:center;color:var(--muted);padding:1.5rem">Loading...</td></tr>
-          </tbody>
-        </table>
+        <div style="position:relative;flex:1">
+          <div style="filter:blur(5px);pointer-events:none;user-select:none;opacity:.55">
+            <table class="trades-table">
+              <thead><tr><th>Time</th><th>Coin</th><th>TF</th><th>Side</th><th>P&amp;L</th></tr></thead>
+              <tbody>
+                <tr><td>14:02:11</td><td style="font-weight:700">BTC</td><td>1h</td><td style="color:var(--green)">UP</td><td style="color:var(--green)">+$3.96</td></tr>
+                <tr><td>13:01:44</td><td style="font-weight:700">ETH</td><td>1h</td><td style="color:var(--red)">DOWN</td><td style="color:var(--green)">+$3.87</td></tr>
+                <tr><td>12:00:09</td><td style="font-weight:700">SOL</td><td>5m</td><td style="color:var(--green)">UP</td><td style="color:var(--green)">+$4.21</td></tr>
+                <tr><td>11:01:33</td><td style="font-weight:700">DOGE</td><td>15m</td><td style="color:var(--red)">DOWN</td><td style="color:var(--red)">-$4.95</td></tr>
+                <tr><td>10:00:52</td><td style="font-weight:700">BNB</td><td>1h</td><td style="color:var(--green)">UP</td><td style="color:var(--green)">+$3.64</td></tr>
+                <tr><td>09:02:18</td><td style="font-weight:700">XRP</td><td>5m</td><td style="color:var(--green)">UP</td><td style="color:var(--green)">+$4.10</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:rgba(6,6,8,.6);backdrop-filter:blur(2px);border-radius:8px">
+            <div style="font-size:2rem">&#x1F512;</div>
+            <div style="font-family:var(--mono);font-size:.75rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.1em">Premium Members Only</div>
+            <div style="font-size:.82rem;color:var(--muted);text-align:center;max-width:240px;line-height:1.6">Live signals fire in Discord the moment the bot enters a trade.</div>
+            <a href="#pricing" class="btn-primary" style="font-size:.8rem;padding:.45rem 1.1rem;text-decoration:none">Unlock Signals</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -905,7 +912,7 @@
 <script>
 // ── CONFIG ──
 // Replace this with your GitHub Gist raw URL after setup
-const GIST_URL = 'https://gist.githubusercontent.com/Vaquito21/464eb4fe8440192b9d814b74734cc5f4/raw/polyomega-stats.json';
+const GIST_URL = 'https://gist.githubusercontent.com/Vaquito21/fd3c8878d6fd2f28596271f972a818c7/raw/polyomega-stats.json';
 
 // ── LOAD LIVE STATS ──
 async function loadStats() {
